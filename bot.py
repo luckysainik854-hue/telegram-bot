@@ -1,9 +1,10 @@
 import os
+import asyncio
 from pyrogram import Client, filters
 
-API_ID = int(os.environ.get("API_ID"))
-API_HASH = os.environ.get("API_HASH")
-BOT_TOKEN = os.environ.get("BOT_TOKEN")
+API_ID = int(os.getenv("API_ID"))
+API_HASH = os.getenv("API_HASH")
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 app = Client(
     "my_bot",
@@ -16,5 +17,12 @@ app = Client(
 async def start(client, message):
     await message.reply("Bot 24/7 running bro 😎🔥")
 
-print("Bot started...")
-app.run()
+async def main():
+    print("Bot started...")
+    await app.start()
+    await idle()
+
+from pyrogram import idle
+
+if __name__ == "__main__":
+    asyncio.run(main())
