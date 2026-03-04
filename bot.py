@@ -26,3 +26,4 @@ from pyrogram import idle
 
 if __name__ == "__main__":
     asyncio.run(main())
+
